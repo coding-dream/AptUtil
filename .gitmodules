@@ -1,0 +1,3 @@
+[submodule "CoreLibs"]
+	path = CoreLibs
+	url = https://github.com/wangli0/Core.git
