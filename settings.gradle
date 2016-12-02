@@ -1,3 +1,1 @@
-include ':app'
-include 'Core_aptutil'
-project(':Core_aptutil').projectDir = new File('./CoreLibs/apt')
+include ':app','apt'
