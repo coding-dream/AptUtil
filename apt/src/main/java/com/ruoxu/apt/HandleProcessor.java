@@ -1,7 +1,7 @@
 package com.ruoxu.apt;
 
 import com.google.auto.service.AutoService;
-import com.ruoxu.anotation.OnClick;
+import com.ruoxu.anotation.BindView;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
@@ -21,12 +21,12 @@ import javax.lang.model.element.TypeElement;
  */
 
 @AutoService(Processor.class)
-public class AfterProcessor extends AbstractProcessor{
+public class HandleProcessor extends AbstractProcessor{
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> sets = new HashSet<>();
-        sets.add(OnClick.class.getCanonicalName());
+        sets.add(BindView.class.getCanonicalName());
         return sets;
     }
 
@@ -41,11 +41,11 @@ public class AfterProcessor extends AbstractProcessor{
 
                 .addStatement("$T.out.println($S)", System.class, "Hello, JavaPoet!"+annotations.toString())
                 .build();
-        TypeSpec helloWorld = TypeSpec.classBuilder("After")
+        TypeSpec helloWorld = TypeSpec.classBuilder("Handle")
                 .addModifiers(Modifier.PUBLIC)
                 .addMethod(main)
                 .build();
-        JavaFile javaFile = JavaFile.builder("com.example.after", helloWorld)
+        JavaFile javaFile = JavaFile.builder("com.example.handle", helloWorld)
                 .build();
 
         try {

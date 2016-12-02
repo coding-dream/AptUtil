@@ -25,7 +25,6 @@ public class AptProcessor extends AbstractProcessor {
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> sets = new HashSet<>();
         sets.add(OnClick.class.getCanonicalName());
-        sets.add(BindView.class.getCanonicalName());
         return sets;
     }
 

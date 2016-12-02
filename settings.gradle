@@ -1,1 +1,4 @@
-include ':app', ':apt',':anotation'
+include ':app', ':apt'
+
+include 'apt_anotation'
+project(':apt_anotation').projectDir = new File('./apt/anotation')
