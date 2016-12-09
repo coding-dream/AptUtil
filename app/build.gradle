@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+
+Properties prop = new Properties()
+prop.load(new FileInputStream(file("signing.properties")))
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -12,11 +17,33 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storeFile file(prop['KEYSTORE_FILEPATH'])
+            storePassword prop['STORE_PASSWORD']
+            keyAlias prop['KEY_ALIAS']
+            keyPassword prop['KEY_PASSWORD']
+        }
+
+    }
+
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug{
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+
     }
 }
 
