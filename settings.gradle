@@ -1,4 +1,4 @@
-include ':app', ':apt', ':auto_update'
+include ':app', ':apt'
 
 include 'apt_anotation'
 project(':apt_anotation').projectDir = new File('./apt/anotation')
@@ -6,4 +6,5 @@ project(':apt_anotation').projectDir = new File('./apt/anotation')
 include 'CoreLibs_update'
 project(':CoreLibs_update').projectDir = new File('./CoreLibs/auto_update')
 
-
+include 'CoreLibs_learnDemo'
+project(':CoreLibs_learnDemo').projectDir = new File('./CoreLibs/learndemo')
